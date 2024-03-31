@@ -24,14 +24,13 @@ class _AddProductFormState extends State<AddProductForm> {
   final _textInputDecoration = InputDecoration(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(20),
-      borderSide: const BorderSide(), // Add an empty BorderSide
+      borderSide: const BorderSide(),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(20),
-      borderSide: const BorderSide(
-          color: secondaryColor), // Specify a color for focused border
+      borderSide: const BorderSide(color: secondaryColor),
     ),
-    labelStyle: const TextStyle(color: mainFontColor),
+    labelStyle: const TextStyle(color: mainColor),
   );
 
   @override
@@ -47,7 +46,7 @@ class _AddProductFormState extends State<AddProductForm> {
             const SizedBox(height: 16),
             const Text("Add product",
                 style: TextStyle(
-                    color: mainFontColor,
+                    color: mainColor,
                     fontSize: 32,
                     fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
@@ -92,7 +91,7 @@ class _AddProductFormState extends State<AddProductForm> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: mainFontColor,
+                  backgroundColor: mainColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -106,9 +105,7 @@ class _AddProductFormState extends State<AddProductForm> {
                       description: _description,
                     );
                     ProductsWebServices().addProduct(product);
-                    showToast(
-                        message: "Product added successfully",
-                        status: ToastStatus.Success);
+                    showToast(message: "Product added successfully");
                     widget.onAddProduct();
                   }
                 },

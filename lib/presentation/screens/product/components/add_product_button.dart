@@ -12,10 +12,10 @@ class AddProductButton extends StatelessWidget {
         onPressAddProduct();
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
-      backgroundColor: mainFontColor,
+      backgroundColor: mainColor,
       child: const Icon(
         Icons.add,
-        color: mainColor,
+        color: backgroundColor,
       ),
     );
   }

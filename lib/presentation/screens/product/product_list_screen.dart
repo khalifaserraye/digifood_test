@@ -2,10 +2,10 @@ import 'package:digifood/buisness_logic/bloc/product/product_bloc.dart';
 import 'package:digifood/data/repositories/product_repository.dart';
 import 'package:digifood/data/web_services/product_web_service.dart';
 import 'package:digifood/presentation/constants/app_colors.dart';
-import 'package:digifood/presentation/screens/product/add_product_form.dart';
+import 'package:digifood/presentation/screens/product/components/add_product_form.dart';
 import 'package:digifood/presentation/screens/product/components/add_product_button.dart';
 import 'package:digifood/presentation/screens/product/components/product_body.dart';
-import 'package:digifood/presentation/screens/product/components/product_header.dart';
+import 'package:digifood/presentation/screens/product/components/product_appbar.dart';
 import 'package:flutter/material.dart';
 
 class ProductList extends StatefulWidget {
@@ -22,6 +22,7 @@ class _ProductListState extends State<ProductList> {
   @override
   void initState() {
     super.initState();
+    ProductsWebServices().addMultipleProductsToDatabase();
     productBloc.add(LoadProducts());
   }
 
@@ -34,7 +35,7 @@ class _ProductListState extends State<ProductList> {
           top: Radius.circular(20),
         ),
       ),
-      backgroundColor: mainColor,
+      backgroundColor: backgroundColor,
       builder: (context) {
         return SingleChildScrollView(
           reverse: true,
@@ -63,7 +64,7 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: mainColor,
+        backgroundColor: backgroundColor,
         appBar: const ProductAppBar(),
         body: ProductListBody(productBloc: productBloc),
         floatingActionButton:

@@ -1,4 +1,4 @@
-import 'package:digifood/presentation/screens/product/product_list.dart';
+import 'package:digifood/presentation/screens/product/product_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 

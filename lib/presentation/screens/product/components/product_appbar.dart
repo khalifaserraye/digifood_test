@@ -7,13 +7,13 @@ class ProductAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: mainColor,
+      backgroundColor: backgroundColor,
       title: SizedBox(
         width: 100,
         height: 30,
         child: Image.network(
           "https://assets-global.website-files.com/6514058c6f47d385996dc236/652935c86ef0a823ba1f9341_Logo-digifood-blue.png",
-          fit: BoxFit.contain, // Ensure the image fits within the container
+          fit: BoxFit.contain,
         ),
       ),
     );

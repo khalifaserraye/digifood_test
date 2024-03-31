@@ -39,12 +39,12 @@ class _ProductListBodyState extends State<ProductListBody> {
                   Icon(
                     Icons.production_quantity_limits_outlined,
                     size: 100,
-                    color: mainFontColor,
+                    color: mainColor,
                   ),
                   SizedBox(height: 20),
                   Text(
                     'No products available',
-                    style: TextStyle(fontSize: 18, color: mainFontColor),
+                    style: TextStyle(fontSize: 18, color: mainColor),
                   ),
                 ],
               ),
@@ -61,14 +61,15 @@ class _ProductListBodyState extends State<ProductListBody> {
                     height: 100,
                     child: CircularProgressIndicator(
                       strokeWidth: 12,
-                      backgroundColor: mainFontColor,
-                      valueColor: AlwaysStoppedAnimation<Color>(mainColor),
+                      backgroundColor: mainColor,
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(backgroundColor),
                     ),
                   ),
                   SizedBox(height: 20),
                   Text(
                     'Loading products ...',
-                    style: TextStyle(fontSize: 18, color: mainFontColor),
+                    style: TextStyle(fontSize: 18, color: mainColor),
                   ),
                 ],
               ),

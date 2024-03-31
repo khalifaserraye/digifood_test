@@ -25,26 +25,37 @@ class _ProductTileState extends State<ProductTile> {
         margin: EdgeInsets.symmetric(horizontal: 16),
         child: ListTile(
           leading: CircleAvatar(
-            backgroundColor: mainColor,
+            backgroundColor: backgroundColor,
             radius: 25.0,
             backgroundImage: AssetImage('assets/images/digifood_logo.png'),
           ),
-          title: Text(
-            '${widget.product.name} | ${widget.product.price} \$',
-            style: TextStyle(
-              color: mainFontColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 16.0,
+          title: RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color: mainColor, // Color for product name
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: widget.product.name,
+                ),
+                TextSpan(
+                  text: ' ${widget.product.price} €',
+                  style: TextStyle(
+                    color: secondaryColor, // Color for price
+                  ),
+                ),
+              ],
             ),
           ),
           subtitle: Text(
             widget.product.description,
-            style: TextStyle(fontSize: 14, color: mainFontColor),
+            style: TextStyle(fontSize: 14, color: mainColor),
           ),
           trailing: IconButton(
             icon: Icon(
               Icons.delete,
-              // color: avertissementColor,
             ),
             onPressed: () async {
               await ProductsWebServices().deleteProduct(widget.product.id!);
