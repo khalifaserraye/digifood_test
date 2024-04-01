@@ -17,7 +17,7 @@ To run the app, follow these steps:
 
 ## Usage
 
-Once the app is running, you will be presented with the home screen. From there, you can navigate to the product list screen to view available products and add them to your cart. You can also add new products using the provided form.
+Once the app is running, you will be presented with the home screen. From there, you can navigate to the product list screen to view available products, you cam delete or add new products using the provided form.
 
 ## Folder Structure
 
@@ -34,6 +34,10 @@ The project follows a scalable folder structure to maintain code organization an
 ## State Management
 
 The app utilizes the BLoC (Business Logic Component) pattern for state management, facilitated by the `flutter_bloc` package. Each screen or feature has its corresponding BLoC to manage its state and interact with repositories.
+
+## Firebase Integration
+
+Firebase is used as the backend service for this app. It provides real-time database storage, authentication, and cloud messaging functionalities.
 
 ## Credits
 
