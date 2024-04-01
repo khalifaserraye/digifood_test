@@ -1,19 +1,23 @@
-// product_event.dart
+part of 'product_bloc.dart'; // Indicates that this file is part of the product_bloc.dart file
 
-part of 'product_bloc.dart';
-
+// Abstract class representing events related to products
 abstract class ProductEvent {}
 
-class LoadProducts extends ProductEvent {}
+// Event to load products
+class LoadEvent extends ProductEvent {}
 
-class AddProduct extends ProductEvent {
-  final Product productToAdd;
+// Event to add a product
+class AddEvent extends ProductEvent {
+  final Product productToAdd; // Product to add
 
-  AddProduct(this.productToAdd);
+  // Constructor for AddEvent
+  AddEvent(this.productToAdd);
 }
 
-class DeleteProduct extends ProductEvent {
-  final String productToDeleteId;
+// Event to delete a product
+class DeleteEvent extends ProductEvent {
+  final String productToDeleteId; // ID of the product to delete
 
-  DeleteProduct(this.productToDeleteId);
+  // Constructor for DeleteEvent
+  DeleteEvent(this.productToDeleteId);
 }

@@ -1,6 +1,7 @@
-import 'package:digifood/presentation/screens/product/product_list_screen.dart';
+import 'package:digifood/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,8 +20,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: ProductList(),
+    return const ScreenUtilInit(
+      designSize: Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        home: HomeScreen(),
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

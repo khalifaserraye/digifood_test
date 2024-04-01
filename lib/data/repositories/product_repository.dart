@@ -6,16 +6,31 @@ class ProductsRepository {
 
   ProductsRepository(this.productsWebServices);
 
+  // Fetches all products from the web service
   Future<List<Product>> getAllProducts() async {
-    dynamic productsData = await productsWebServices.getAllProducts();
-    return productsData;
+    try {
+      final List<Product> products = await productsWebServices.getAllProducts();
+      return products;
+    } catch (e) {
+      rethrow; // Rethrows the exception to propagate it to the caller
+    }
   }
 
+  // Adds a product using the web service
   Future<void> addProduct(Product productToAdd) async {
-    await productsWebServices.addProduct(productToAdd);
+    try {
+      await productsWebServices.addProduct(productToAdd.toMap());
+    } catch (e) {
+      rethrow; // Rethrows the exception to propagate it to the caller
+    }
   }
 
-  Future<void> deleteProduct(String productToDeleteId) async {
-    await productsWebServices.deleteProduct(productToDeleteId);
+  // Deletes a product using the web service
+  Future<void> deleteProduct(String productId) async {
+    try {
+      await productsWebServices.deleteProduct(productId);
+    } catch (e) {
+      rethrow; // Rethrows the exception to propagate it to the caller
+    }
   }
 }

@@ -1,38 +1,41 @@
+import 'package:digifood/presentation/screens/product/components/product_appbar.dart';
+import 'package:digifood/presentation/screens/product/components/product_body.dart';
+import 'package:flutter/material.dart';
 import 'package:digifood/buisness_logic/bloc/product/product_bloc.dart';
 import 'package:digifood/data/repositories/product_repository.dart';
 import 'package:digifood/data/web_services/product_web_service.dart';
 import 'package:digifood/presentation/constants/app_colors.dart';
 import 'package:digifood/presentation/screens/product/components/add_product_form.dart';
 import 'package:digifood/presentation/screens/product/components/add_product_button.dart';
-import 'package:digifood/presentation/screens/product/components/product_body.dart';
-import 'package:digifood/presentation/screens/product/components/product_appbar.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProductList extends StatefulWidget {
-  const ProductList({super.key});
+class ProductListScreen extends StatefulWidget {
+  const ProductListScreen({super.key});
 
   @override
-  State<ProductList> createState() => _ProductListState();
+  State<ProductListScreen> createState() => _ProductListState();
 }
 
-class _ProductListState extends State<ProductList> {
+class _ProductListState extends State<ProductListScreen> {
   final ProductBloc productBloc =
       ProductBloc(ProductsRepository(ProductsWebServices()));
 
   @override
   void initState() {
     super.initState();
-    ProductsWebServices().addMultipleProductsToDatabase();
-    productBloc.add(LoadProducts());
+    // Dispatch LoadEvent to load products when the screen initializes
+    productBloc.add(LoadEvent());
   }
 
+  // Function to show the bottom sheet for adding a new product
   void showAddPanel() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
+          top: Radius.circular(20.r),
         ),
       ),
       backgroundColor: backgroundColor,
@@ -44,10 +47,7 @@ class _ProductListState extends State<ProductList> {
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             child: AddProductForm(
-              onAddProduct: () {
-                productBloc.add(LoadProducts());
-                Navigator.pop(context);
-              },
+              productBloc: productBloc,
             ),
           ),
         );
@@ -57,17 +57,22 @@ class _ProductListState extends State<ProductList> {
 
   @override
   void dispose() {
+    // Close the product bloc when the screen is disposed
     productBloc.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocProvider(
+      create: (context) => productBloc,
+      child: Scaffold(
         backgroundColor: backgroundColor,
         appBar: const ProductAppBar(),
         body: ProductListBody(productBloc: productBloc),
         floatingActionButton:
-            AddProductButton(onPressAddProduct: showAddPanel));
+            AddProductButton(onAddProductPressed: showAddPanel),
+      ),
+    );
   }
 }
